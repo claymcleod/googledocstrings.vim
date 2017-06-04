@@ -1,13 +1,18 @@
 if !exists('g:googledocstrings_author')
-	let g:googledocstrings_author = ''
+    let g:googledocstrings_author = ''
 endif
 
 if !exists('g:googledocstrings_todo')
-	let g:googledocstrings_todo = 'TODO'
-	if len(g:googledocstrings_author) > 0
-		let g:googledocstrings_todo = g:googledocstrings_todo . '(' . g:googledocstrings_author . ')'
-	endif
+    let g:googledocstrings_todo = 'TODO'
+    if len(g:googledocstrings_author) > 0
+        let g:googledocstrings_todo = g:googledocstrings_todo . '(' . g:googledocstrings_author . ')'
+    endif
 endif
+
+if exists("b:did_ftplugin")
+	finish
+endif
+let b:did_ftplugin = 1
 
 function IndentLines(lines, indent)
 	let result = []
@@ -121,7 +126,7 @@ function GetDocstringDef(line, indent)
 
 	call add(lines, '')
 	call add(lines, 'Returns:')
-	call add(lines, '    (' . returnType . '): ' . g:googledocstrings_todo)
+	call add(lines, '    ' . returnType . ': ' . g:googledocstrings_todo)
 	call add(lines, '"""')
 	call add(lines, '')
 	return IndentLines(lines, a:indent)
