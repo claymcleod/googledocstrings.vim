@@ -121,12 +121,28 @@ function GetDocstringDef(line, indent)
 	return IndentLines(lines, a:indent)
 endfunction
 
+function GetDocstringHeader()
+	let lines = []
+	call add(lines, '"""A short description.')
+	call add(lines, '')
+	call add(lines, 'Author: ' . g:googledocstrings_author)
+	call add(lines, 'Email: ' . g:googledocstrings_email)
+	call add(lines, 'Last Modified: ' . strftime('%x %X (%Z)')) 
+	call add(lines, '"""')
+	return lines
+endfunction
+
 function GoogleDocstringsGendoc()
 	let begin = line('^')
 	let end = line('$')
 
-	let i = begin
+	if getline('^') !~ '"""'
+		call append(line('^'), GetDocstringHeader())
+		let end = line('$')
+	endif
 
+	" Scan for def docstrings.
+	let i = begin
 	while i < end
 		let line = getline(i)
 		let nextline = getline(i+1)
