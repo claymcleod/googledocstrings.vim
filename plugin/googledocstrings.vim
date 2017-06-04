@@ -1,0 +1,1 @@
+command! GoogleDocstringsGendoc call GoogleDocstringsGendoc()
