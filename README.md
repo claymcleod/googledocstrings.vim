@@ -2,7 +2,8 @@ This is a VIM plugin I wrote to satisfy my personal needs during Python document
 
 TODO
 ----
-	* Assumes you use spaces instead of tabs.
+
+* Assumes you use spaces instead of tabs.
 
 Usage
 -----
